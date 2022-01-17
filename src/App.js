@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import AddMovie from './assets/components/AddMovie';
+import { useDispatch } from 'react-redux';
+import MoviesList from './assets/components/MovieList';
+// import AddMovie from './assets/components/AddMovie';
+import { addNewMovie } from './assets/js/actions/actions';
+// import SearchBar from './assets/components/SearchBar';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  const addMovie = (newMovie) => {
+    dispatch(addNewMovie(newMovie));
+  };
+  // const handleSearch = (word) => {
+  //   dispatch(SearchMovie(word));
+  // };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <AddMovie handleAdd={addMovie} />
+      <MoviesList />
+
+      {/* <SearchBar handleSearch={handleSearch} />*/}
     </div>
   );
-}
+};
 
 export default App;
